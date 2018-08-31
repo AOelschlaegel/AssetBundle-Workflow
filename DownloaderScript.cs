@@ -1,17 +1,15 @@
 //Put this on an Empty Gameobject
-
 using System.Collections;
 using UnityEngine;
 
-namespace MapFramework
+namespace AssetBundleHelper
 {
-
 	public class DownloaderScript : MonoBehaviour
 	{
 		[Tooltip("URLs to the AssetBundles.")]
-		[SerializeField] private string _guessAssetsURL, _matAssetsURL;
+		[SerializeField] private string _prefabAssetsURL, _matAssetsURL;
 
-		private AssetBundle _guessBundle, _matBundle;
+		private AssetBundle _assetBundle, _matBundle;
 
 		IEnumerator Start()
 		{
@@ -23,18 +21,18 @@ namespace MapFramework
 			_matBundle.LoadAllAssets();
 
 			//Then download the AssetBundle with the Prefab.
-			www = new WWW(_guessAssetsURL);
+			www = new WWW(_prefabAssetsURL);
 			yield return www;
 
-			_guessBundle = www.assetBundle;
+			_assetBundle = www.assetBundle;
 
 			//Instantiate the downloaded prefab.
-			Spawn("_guessBundle");
+			Spawn("_prefab");
 		}
 
 		private void Spawn(string assetName)
 		{
-			Instantiate(_guessBundle.LoadAsset("Building_Guess"));
+			Instantiate(_assetBundle.LoadAsset("_prefab"));
 		}
 
 		//Clear the memory
