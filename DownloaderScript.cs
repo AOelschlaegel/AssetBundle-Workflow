@@ -38,7 +38,7 @@ namespace AssetBundleHelper
 		//Clear the memory
 		private void UnloadAllBundles()
 		{
-			_guessBundle.Unload(false);
+			_assetBundle.Unload(false);
 		}
 	}
 }
